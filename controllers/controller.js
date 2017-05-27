@@ -8,7 +8,7 @@ var cheerio = require("cheerio");
 var router = express.Router();
 
 router.get("/", function(req, res) {
-  res.send("This is the index page");
+    res.render('index');
 });
 
 // A GET request to scrape the echojs website
@@ -41,22 +41,26 @@ router.get("/scrape", function(req, res) {
     });
   });
   // Tell the browser that we finished scraping the text
-  res.send("Scrape Complete");
+  res.redirect("/");
 });
 
-// This will get the articles we scraped from the mongoDB
-router.get("/articles", function(req, res) {
-  // Grab every doc in the Articles array
-  Article.find({}, function(error, doc) {
-    // Log any errors
+
+router.get('/results', function(req, res){
+    // Find all results from the Articles collection in the db
+  Article.find({saved: false},function(error, found) {
+    // Throw any errors to the console
     if (error) {
-      console.log(error);
+      return res.render('error');
     }
-    // Or send the doc to the browser as a json object
+    // If there are no errors, send the data to the browser as a json
     else {
-      res.json(doc);
+      var hbsObject={
+        articles: found
+        }
+      res.render("results", hbsObject);
     }
   });
+
 });
 
 module.exports = router;

@@ -1,0 +1,19 @@
+<div class="container" id="tableContainer">
+  <table class="table">
+     
+      <tbody>
+      {{#if articles}}
+        {{#each articles}}
+         
+          <tr>
+            <td><a href="{{this.link}}" target="_blank">{{this.title}}</a></td>
+          </tr>
+          
+          
+        {{/each}}
+        {{else}}
+        <td class="text-center"> No Articles Found</td>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
