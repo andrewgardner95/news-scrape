@@ -8,11 +8,13 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema ({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     link: {
         type: String,
-        require: true
+        require: true,
+        unique: true
     }
 });
 

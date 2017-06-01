@@ -1,5 +1,6 @@
-// Requiring the models
+// Models
 var Article = require("../models/Article.js");
+var Comment = require("../models/Comment.js");
 
 // Dependencies
 var express = require("express");
@@ -7,11 +8,13 @@ var request = require("request");
 var cheerio = require("cheerio");
 var router = express.Router();
 
-router.get("/", function(req, res) {
-    res.render('index');
+router.get("/", function (req, res) {
+  Article.find().populate("comments").exec(function (error, found) {
+      res.render("index", { articles: found })
+    })
 });
 
-// A GET request to scrape the echojs website
+// Scrape top articles on reddit world news and store in mongoDB
 router.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   request("http://www.reddit.com/r/worldnews/", function(error, response, html) {
@@ -22,45 +25,22 @@ router.get("/scrape", function(req, res) {
       // Save an empty result object
       var result = {};
       // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children("a").text();
-      result.link = $(this).children("a").attr("href");
-      // Using our Article model, create a new entry
-      // This effectively passes the result object to the entry (and the title and link)
-      var entry = new Article(result);
-      // Now, save that entry to the db
-      entry.save(function(err, doc) {
-        // Log any errors
-        if (err) {
-          console.log(err);
-        }
-        // Or log the doc
-        else {
-          console.log(doc);
+      var title = $(this).children("a").text();
+      var link = $(this).children("a").attr("href");
+      if (title && link) {
+        // Save the data in the scrapedData db
+        var newArticle = new Article({ title: title, link: link });
+        newArticle.save(function (error, saved) {
+          // If there's an error during this query
+          if (error) {
+            // Log the error
+          }
+        });
         }
       });
     });
-  });
-  // Tell the browser that we finished scraping the text
-  res.redirect("/");
-});
-
-
-router.get('/results', function(req, res){
-    // Find all results from the Articles collection in the db
-  Article.find({saved: false},function(error, found) {
-    // Throw any errors to the console
-    if (error) {
-      return res.render('error');
-    }
-    // If there are no errors, send the data to the browser as a json
-    else {
-      var hbsObject={
-        articles: found
-        }
-      res.render("results", hbsObject);
-    }
+    res.redirect("/");
   });
 
-});
 
 module.exports = router;
