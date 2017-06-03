@@ -1,7 +1,7 @@
-<div class="container panel panel-default">
-    {{#each articles }}
-    <div class="articleList">
-        <h3 class="panel-heading"><a href="{{link}}">{{title}}</a></h3>
-    </div>
-    {{/each}}
+<div id="article-list">
+        <ol>
+            {{#each articles }}
+            <li><a href="{{this.link}}">{{this.title}}</a></li>
+            {{/each}}
+        </ol>
 </div>

@@ -8,10 +8,8 @@ var request = require("request");
 var cheerio = require("cheerio");
 var router = express.Router();
 
-router.get("/", function (req, res) {
-  Article.find().populate("comments").exec(function (error, found) {
-      res.render("index", { articles: found })
-    })
+router.get("/", function(req, res) {
+  res.redirect("/scrape");
 });
 
 // Scrape top articles on reddit world news and store in mongoDB
@@ -25,22 +23,30 @@ router.get("/scrape", function(req, res) {
       // Save an empty result object
       var result = {};
       // Add the text and href of every link, and save them as properties of the result object
-      var title = $(this).children("a").text();
-      var link = $(this).children("a").attr("href");
-      if (title && link) {
-        // Save the data in the scrapedData db
-        var newArticle = new Article({ title: title, link: link });
-        newArticle.save(function (error, saved) {
-          // If there's an error during this query
-          if (error) {
-            // Log the error
-          }
-        });
+      result.title = $(this).children("a").text();
+      result.link = $(this).children("a").attr("href");
+      // Save the data in the scrapedData db
+      var newArticle = new Article(result);
+      newArticle.save(function (error, doc) {
+        // If there's an error during this query
+        if (error) {
+          console.log(error);
+        }
+        // Or log the doc
+        else {
         }
       });
     });
-    res.redirect("/");
   });
+  // Tell the browser that we finished scraping the text
+  res.redirect("/home");
+});
+
+router.get("/home", function (req, res) {
+  Article.find().populate("comments").exec(function (error, found) {
+      res.render("index", { articles: found })
+    })
+});
 
 
 module.exports = router;
