@@ -9,17 +9,19 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var request = require("request");
 var cheerio = require("cheerio");
+var methodOverride = require('method-override');
 // Mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
 mongoose.Promise = Promise;
 
 var PORT = process.env.PORT || 3000;
 
-// Use morgan and body parser with our app
 app.use(logger("dev"));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+app.use(methodOverride("_method"));
 
 // Make public a static dir
 app.use(express.static("public"));
