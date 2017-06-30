@@ -1,4 +1,4 @@
-// MONGODB_URI: mongodb://heroku_40skqh1s:vp9mcp56ouc1cu2c68vt0olgju@ds153501.mlab.com:53501/heroku_40skqh1s
+// MONGODB_URI: mongodb://heroku_4r1tbs52:7j182r1d4iffcelkl9cbdm60cs@ds021731.mlab.com:21731/heroku_4r1tbs52
 
 // Dependencies
 var express = require("express");
@@ -31,7 +31,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 // Establishing a connection to mongoDB
-mongoose.connect("mongodb://localhost/news-scrape");
+mongoose.connect("mongodb://heroku_4r1tbs52:7j182r1d4iffcelkl9cbdm60cs@ds021731.mlab.com:21731/heroku_4r1tbs52");
 var db = mongoose.connection;
 
 // Show any mongoose errors
