@@ -1,3 +1,5 @@
+// Creating the basis for the database architecture
+
 // Require mongoose module
 var mongoose = require("mongoose");
 

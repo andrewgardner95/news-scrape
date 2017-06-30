@@ -15,9 +15,6 @@ mongoose.Promise = Promise;
 
 var PORT = process.env.PORT || 3000;
 
-// Requiring the models
-var Article = require("./models/Article.js");
-
 // Use morgan and body parser with our app
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({

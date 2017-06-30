@@ -12,10 +12,10 @@ router.get("/", function(req, res) {
   res.redirect("/scrape");
 });
 
-// Scrape top articles on reddit world news and store in mongoDB
+// Scrape top articles on reddit's uplifting news site and store in mongoDB
 router.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
-  request("http://www.reddit.com/r/worldnews/", function(error, response, html) {
+  request("http://www.reddit.com/r/upliftingnews/", function(error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(html);
     // Now, we grab every h2 within an article tag, and do the following:
