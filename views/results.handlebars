@@ -2,7 +2,10 @@
     <h2>Top Articles</h2>
         <ul>
             {{#each articles }}
-            <li><a href="{{this.link}}">{{this.title}}</a></li>
+            <li><a target="_blank" href="{{this.link}}">{{this.title}}</a></li>
+                <form action="/id/{{this._id}}?_method=PUT" method="POST">
+                    <button type="submit" class="btn btn-success">Favorite</button>
+                </form>
             {{/each}}
         </ul>
 </div>

@@ -1,0 +1,8 @@
+<div id="article-container">
+    <h2>Favorite Articles</h2>
+        <ul>
+            {{#each articles }}
+            <li><a target="_blank" href="{{this.link}}">{{this.title}}</a></li>
+            {{/each}}
+        </ul>
+</div>

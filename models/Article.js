@@ -17,7 +17,11 @@ var ArticleSchema = new Schema ({
         type: String,
         require: true,
         unique: true
-    }
+    },
+    saved: {
+      type: Boolean,
+      default: false
+  }
 });
 
 // Naming our schema "Article" and passing in the name of our schema

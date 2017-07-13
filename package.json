@@ -25,6 +25,7 @@
     "method-override": "^2.3.9",
     "mongoose": "^4.10.2",
     "morgan": "^1.8.2",
+    "nodemon": "^1.11.0",
     "request": "^2.81.0"
   }
 }

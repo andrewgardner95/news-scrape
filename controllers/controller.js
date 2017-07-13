@@ -46,5 +46,28 @@ router.get("/articles", function (req, res) {
     });
 });
 
+// Marking articles as saved in the db when the user clicks the favorite button
+router.put('/id/:id', function(req, res) {
+  var ID = req.params.id;
+  Article.update({_id: ID},{ $set: {saved: true} }, function(error, updated) {
+    if (error) {
+      res.render('error');
+    } else {
+      res.redirect("/articles");
+    }
+  })
+});
+
+// Getting saved articles and rendering them on the favorites page
+router.get("/favorites", function(req, res) {
+  Article.find({saved: true}, function(error, found) {
+    if (error) {
+      res.render('error');
+    } else {
+        res.render("favorites", { articles: found });
+    }
+  })
+});
+
 // Export for server.js
 module.exports = router;
