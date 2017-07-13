@@ -1,3 +1,4 @@
+
 <div id="article-container">
     <p id="top-articles-header">Top Articles</p>
         <ul>
@@ -5,7 +6,7 @@
                 <div id="article-indiv">
                     <li><a target="_blank" href="{{this.link}}">{{this.title}}</a></li>
                         <form action="/id/{{this._id}}?_method=PUT" method="POST">
-                            <button type="submit" class="btn btn-success">Favorite</button>
+                            <button id="favorite" type="submit" class="btn btn-success">Favorite</button>
                         </form>
                 </div>
             {{/each}}

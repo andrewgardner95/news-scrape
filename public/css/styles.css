@@ -18,7 +18,7 @@ body {
     height: 100%;
     min-height: 100%;
     font-family: 'Raleway', sans-serif;
-    background-image: url("");
+    background-image: url("http://cdn.thedesigninspiration.com/wp-content/uploads/2013/03/PS-Neutral-l.jpg");
 }
 
 .navbar {
@@ -72,7 +72,7 @@ a:hover {
     margin: 0 auto;
     padding: 30px 10px 20px 50px;
     margin-bottom: 20px;
-    margin-top: 40px;
+    margin-top: 60px;
 }
 
 #find {
@@ -101,29 +101,31 @@ box-shadow: 0px 0px 35px 18px rgba(118,148,209,0.7);
 
 #top-articles-header {
   text-align: center;
-  padding-top: 30px;
-  font-size: 30px;
+  padding-top: 40px;
+  font-size: 40px;
   color: #447ef5;
+  margin-bottom: 20px;
 }
 
 #article-container {
     width: 90%;
     margin: 0 auto;
-    font-size: 24px;
-    background: white;
+    font-size: 200%;
+    background-image: url("http://cdn.thedesigninspiration.com/wp-content/uploads/2013/03/PS-Neutral-l.jpg");
     padding: 0px 0px 0px 0px;
     margin-bottom: 40px;
 }
 
 #article-indiv {
   background: white;
-  margin-bottom: 5px;
+  margin: 0px 5px 10px 0px;
   border-radius: 20px;
-  padding: 40px;
+  padding: 30px;
   width: 31.2%;
   display: inline-block;
   height: 300px;
   border: solid 1px black;
+  text-align: center;
 }
 
 .btn {

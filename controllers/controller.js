@@ -34,15 +34,35 @@ router.get("/scrape", function(req, res) {
   res.redirect("/articles");
 });
 
+// // Scrape articles from reddit and store in mongoDB
+// router.get("/scrape", function(req, res) {
+//   request("http://www.reddit.com/r/upliftingnews/", function(error, response, html) {
+//     var $ = cheerio.load(html);
+//     $("div.thing").each(function(i, element) {
+//       var result = {};
+//       result.title = $(this).find("p.title").text();
+//       result.link = $(this).find("p.title").attr("href");
+//       var newArticle = new Article(result);
+//       newArticle.save(function (error, doc) {
+//         if (error) {
+//           console.log(error);
+//         }
+//         else {
+//         }
+//       });
+//     });
+//   });
+//   res.redirect("/articles");
+// });
+
 // // Scrape images from reddit and store in mongoDB
 // router.get("/scrape", function(req, res) {
 //   request("http://www.reddit.com/r/upliftingnews/", function(error, response, html) {
 //     var $ = cheerio.load(html);
-//     $("a.thumbnail").each(function(i, element) {
-//       var result = {};
-//       result.image = $(this).find("img").attr("src").substring(2);
-//       console.log(result.image);
-//       var newArticle = new Article(result);
+//     $("div.thing").each(function(i, element) {
+//       var image = $(this).find("img").attr("src");
+//       console.log(image)
+//       var newArticle = new Article(image);
 //       newArticle.save(function (error, doc) {
 //         if (error) {
 //           console.log(error);
