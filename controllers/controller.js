@@ -52,8 +52,6 @@ router.put('/id/:id', function(req, res) {
   Article.update({_id: ID},{ $set: {saved: true} }, function(error, updated) {
     if (error) {
       res.render('error');
-    } else {
-      res.redirect("/articles");
     }
   })
 });
@@ -65,7 +63,7 @@ router.put('/remove/:id', function(req, res) {
     if (error) {
       res.render('error');
     } else {
-      res.redirect("/articles");
+      res.redirect("/favorites");
     }
   })
 });
