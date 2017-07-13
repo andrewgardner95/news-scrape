@@ -58,6 +58,18 @@ router.put('/id/:id', function(req, res) {
   })
 });
 
+// Unmarking articles as saved in the db when the user clicks the remove button
+router.put('/remove/:id', function(req, res) {
+  var ID = req.params.id;
+  Article.update({_id: ID},{ $set: {saved: false} }, function(error, updated) {
+    if (error) {
+      res.render('error');
+    } else {
+      res.redirect("/articles");
+    }
+  })
+});
+
 // Getting saved articles and rendering them on the favorites page
 router.get("/favorites", function(req, res) {
   Article.find({saved: true}, function(error, found) {
