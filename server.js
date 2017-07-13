@@ -34,6 +34,9 @@ app.set('view engine', 'handlebars');
 mongoose.connect("mongodb://heroku_4r1tbs52:7j182r1d4iffcelkl9cbdm60cs@ds021731.mlab.com:21731/heroku_4r1tbs52");
 var db = mongoose.connection;
 
+// mongoose.connect("mongodb://localhost/news-scrape");
+// var db = mongoose.connection;
+
 // Show any mongoose errors
 db.on("error", function(error) {
   console.log("Mongoose Error: ", error);

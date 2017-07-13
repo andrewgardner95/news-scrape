@@ -34,6 +34,27 @@ router.get("/scrape", function(req, res) {
   res.redirect("/articles");
 });
 
+// // Scrape images from reddit and store in mongoDB
+// router.get("/scrape", function(req, res) {
+//   request("http://www.reddit.com/r/upliftingnews/", function(error, response, html) {
+//     var $ = cheerio.load(html);
+//     $("a.thumbnail").each(function(i, element) {
+//       var result = {};
+//       result.image = $(this).find("img").attr("src").substring(2);
+//       console.log(result.image);
+//       var newArticle = new Article(result);
+//       newArticle.save(function (error, doc) {
+//         if (error) {
+//           console.log(error);
+//         }
+//         else {
+//         }
+//       });
+//     });
+//   });
+//   res.redirect("/articles");
+// });
+
 // Getting articles from db and displaying them on the results page
 router.get("/articles", function (req, res) {
   Article.find()
